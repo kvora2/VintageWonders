@@ -7,19 +7,23 @@ import { NavDropdown } from "react-bootstrap";
 import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { addToHistory } from "@/lib/userData";
-import { readToken, removeToken } from "@/lib/authenticate";
+// import { readToken, removeToken } from "@/lib/authenticate";
 
 export default function MainNav() {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
     const [searchVal, setIt] = useState('');
     const [isExpanded, setisExpanded] = useState(false);
     const router = useRouter();
-    console.log(readToken())
+    // const token = readToken();
+    // console.log("token --> ", token)
 
     async function SearchForm(e) {
         e.preventDefault();
         setisExpanded(false)
-        router.push(`/artwork?title=true&q=${searchVal}`)
+        if (searchVal != "") {
+            router.push(`/artwork?title=true&q=${searchVal}`)
+            setIt("");
+        }
         let queryString = `title=true&q=${searchVal}`;
         setSearchHistory(await addToHistory(queryString))
     }

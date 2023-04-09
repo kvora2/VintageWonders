@@ -2,10 +2,12 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { searchHistoryAtom, favouritesAtom } from '@/store'
 import { getFavourites, getHistory } from '@/lib/userData';
+import { isAuthenticated } from '@/lib/authenticate';
 
 const PUBLIC_PATHS = ['/login', '/', '/_error', '/register'];
 
 export default function RouteGuard(props) {
+  const [authorized, setAuthorized] = useState(false)
   const [favouritesList, setFavouritesList] = useState(favouritesAtom)
   const [HistoryList, setSearchHistory] = useState(searchHistoryAtom)
   const router = useRouter();
@@ -33,10 +35,15 @@ export default function RouteGuard(props) {
 
   function authCheck(url) {
     const path = url.split('?')[0];
-    if (!PUBLIC_PATHS.includes(path)) {
-      console.log(`trying to request a secure path: ${path}`);
+    if (!isAuthenticated() && !PUBLIC_PATHS.includes(path)) {
+      setAuthorized(false);
+      router.push('/login')
+      // console.log(`trying to request a secure path: ${path}`);
+    }
+    else {
+      setAuthorized(true);
     }
   }
 
-  return <>{props.children}</>
+  return <>{authorized && props.children}</>
 }
