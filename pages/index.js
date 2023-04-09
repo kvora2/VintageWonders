@@ -6,7 +6,7 @@
 * 
 *  Name: Kelvin Vora Student ID: 157616210 Date: 8th april, 2023
 *
-*  Vercel App (Deployed) Link: https://a6main.vercel.app/login
+*  Vercel App (Deployed) Link: https://a6main.vercel.app
 *
 ********************************************************************************/ 
 
