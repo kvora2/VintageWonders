@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/login": "pages/login.js",
-  "/favourites": "pages/favourites.js"
+  "/": "pages/index.js",
+  "/artwork": "pages/artwork.js",
+  "/login": "pages/login.js"
 }
