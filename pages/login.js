@@ -60,6 +60,7 @@ export default function Login(props) {
             id="userName"
             name="userName"
             onChange={(e) => setUser(e.target.value)}
+            required
           />
         </Form.Group>
         <br />
@@ -71,6 +72,7 @@ export default function Login(props) {
             id="password"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </Form.Group>
         <br />

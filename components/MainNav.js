@@ -5,18 +5,21 @@ import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { NavDropdown } from "react-bootstrap";
 import { useAtom } from "jotai";
-import { searchHistoryAtom } from "@/store";
+import { searchHistoryAtom, favouritesAtom } from "@/store";
 import { addToHistory } from "@/lib/userData";
 import { readToken, removeToken } from "@/lib/authenticate";
 
 export default function MainNav() {
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+  const [favouritesList, setFavouritesList] = useState(favouritesAtom);
   const [searchVal, setIt] = useState("");
   const [isExpanded, setisExpanded] = useState(false);
   const [userName, setUserName] = useState("");
   const router = useRouter();
 
   console.log("token userName --> ", userName);
+
+  console.log("searchHistory 2--> ", searchHistory);
 
   async function SearchForm(e) {
     e.preventDefault();
@@ -45,6 +48,8 @@ export default function MainNav() {
     setisExpanded(false);
     removeToken();
     setUserName("");
+    setFavouritesList();
+    setSearchHistory();
     router.push("/");
   }
 
@@ -54,7 +59,8 @@ export default function MainNav() {
     if (token) {
       setUserName(token.userName);
     }
-  }, [userName]);
+    console.log("searchHistory 1--> ", searchHistory);
+  }, [searchHistory]);
 
   return (
     <>
@@ -76,33 +82,36 @@ export default function MainNav() {
               <Link href="/" passHref legacyBehavior>
                 <Nav.Link active={router.pathname === "/"}>Home</Nav.Link>
               </Link>
-              <Link href="/search" passHref legacyBehavior>
-                <Nav.Link active={router.pathname === "/search"}>
-                  Advanced Search
-                </Nav.Link>
-              </Link>
             </Nav>
-            <Form className="d-flex" onSubmit={SearchForm}>
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                onChange={handleSearchChange}
-                value={searchVal}
-              />
-              <Button type="submit" variant="outline-light">
-                Search
-              </Button>
-            </Form>
-            <Nav>
-              <NavDropdown
-                title={userName ? userName : "User"}
-                id="basic-nav-dropdown"
-                onClick={handleClickin}
-              >
-                {userName ? (
-                  <>
+            {userName ? (
+              <>
+                <Nav className="me-auto" onClick={handleClickin}>
+                  <Link href="/search" passHref legacyBehavior>
+                    <Nav.Link active={router.pathname === "/search"}>
+                      Advanced Search
+                    </Nav.Link>
+                  </Link>
+                </Nav>
+
+                <Form className="d-flex" onSubmit={SearchForm}>
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    onChange={handleSearchChange}
+                    value={searchVal}
+                  />
+                  <Button type="submit" variant="outline-light">
+                    Search
+                  </Button>
+                </Form>
+                <Nav>
+                  <NavDropdown
+                    title={userName ? userName : "User"}
+                    id="basic-nav-dropdown"
+                    onClick={handleClickin}
+                  >
                     <Link href="/favourites" passHref legacyBehavior>
                       <NavDropdown.Item
                         active={router.pathname === "/favourites"}
@@ -120,25 +129,23 @@ export default function MainNav() {
                         Logout
                       </NavDropdown.Item>
                     )}
-                  </>
-                ) : (
-                  <>
-                    <Link href="/register" passHref legacyBehavior>
-                      <NavDropdown.Item
-                        active={router.pathname === "/register"}
-                      >
-                        Register
-                      </NavDropdown.Item>
-                    </Link>
-                    <Link href="/login" passHref legacyBehavior>
-                      <NavDropdown.Item active={router.pathname === "/login"}>
-                        Login
-                      </NavDropdown.Item>
-                    </Link>
-                  </>
-                )}
-              </NavDropdown>
-            </Nav>
+                  </NavDropdown>
+                </Nav>
+              </>
+            ) : (
+              <Nav className="d-flex" onClick={handleClickin}>
+                <Link href="/register" passHref legacyBehavior>
+                  <Nav.Link className="mx-4" active={router.pathname === "/register"}>
+                    Register
+                  </Nav.Link>
+                </Link>
+                <Link href="/login" passHref legacyBehavior>
+                  <Nav.Link active={router.pathname === "/login"}>
+                    Login
+                  </Nav.Link>
+                </Link>
+              </Nav>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
