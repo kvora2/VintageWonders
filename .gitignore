@@ -3,7 +3,7 @@ node_modules
 .env
 
 # next.js
-/.next/
+.next/
 /out/
 
 # no OS generated files
