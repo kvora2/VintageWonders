@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { searchHistoryAtom, favouritesAtom } from "@/store";
 import { getFavourites, getHistory } from "@/lib/userData";
 import { isAuthenticated } from "@/lib/authenticate";
+import { useAtom } from "jotai";
 
 const PUBLIC_PATHS = ["/login", "/", "/_error", "/register"];
 
 export default function RouteGuard(props) {
   const [authorized, setAuthorized] = useState(false);
-  const [favouritesList, setFavouritesList] = useState(favouritesAtom);
-  const [HistoryList, setSearchHistory] = useState(searchHistoryAtom);
+  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+  const [HistoryList, setSearchHistory] = useAtom(searchHistoryAtom);
   const router = useRouter();
 
   useEffect(() => {

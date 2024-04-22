@@ -1,6 +1,5 @@
 import MainNav from "@/components/MainNav"
 import { Container } from "react-bootstrap"
-import { searchHistoryAtom } from "@/store"
 
 export default function Layout(props) {
     return (
