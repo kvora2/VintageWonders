@@ -82,17 +82,16 @@ export default function MainNav() {
               <Link href="/" passHref legacyBehavior>
                 <Nav.Link active={router.pathname === "/"}>Home</Nav.Link>
               </Link>
+              {userName && (
+                <Link href="/search" passHref legacyBehavior>
+                  <Nav.Link active={router.pathname === "/search"}>
+                    Advanced Search
+                  </Nav.Link>
+                </Link>
+              )}
             </Nav>
             {userName ? (
               <>
-                <Nav className="me-auto" onClick={handleClickin}>
-                  <Link href="/search" passHref legacyBehavior>
-                    <Nav.Link active={router.pathname === "/search"}>
-                      Advanced Search
-                    </Nav.Link>
-                  </Link>
-                </Nav>
-
                 <Form className="d-flex" onSubmit={SearchForm}>
                   <Form.Control
                     type="search"
@@ -108,9 +107,10 @@ export default function MainNav() {
                 </Form>
                 <Nav>
                   <NavDropdown
-                    title={userName ? userName : "User"}
+                    title={userName}
                     id="basic-nav-dropdown"
                     onClick={handleClickin}
+                    className="mx-4"
                   >
                     <Link href="/favourites" passHref legacyBehavior>
                       <NavDropdown.Item
@@ -135,7 +135,10 @@ export default function MainNav() {
             ) : (
               <Nav className="d-flex" onClick={handleClickin}>
                 <Link href="/register" passHref legacyBehavior>
-                  <Nav.Link className="mx-4" active={router.pathname === "/register"}>
+                  <Nav.Link
+                    className="mx-4"
+                    active={router.pathname === "/register"}
+                  >
                     Register
                   </Nav.Link>
                 </Link>

@@ -1,2 +1,10 @@
+# nodejs packages and key/creds
 node_modules
 .env
+
+# next.js
+/.next/
+/out/
+
+# no OS generated files
+.DS_Store
