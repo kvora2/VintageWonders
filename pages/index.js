@@ -1,16 +1,3 @@
-/*********************************************************************************
-*  BTI425 – Assignment 06
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part of this
-*  assignment has been copied manually or electronically from any other source (including web sites) or 
-*  distributed to other students.
-* 
-*  Name: Kelvin Vora Student ID: 157616210 Date: 8th april, 2023
-*
-*  Vercel App (Deployed) Link: https://a6main.vercel.app
-*
-********************************************************************************/ 
-
-
 import { Row, Col, Image } from 'react-bootstrap';
 import { Inter } from 'next/font/google'
 
