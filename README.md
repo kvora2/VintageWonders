@@ -4,7 +4,7 @@ This project is a full-stack web application built with Next.js and Jotai. It fe
 
 ## Visit here for demonstration
 
-You can access a live demo of the application here -> [VintageWondersAPI](https://vintagewonders.vercel.app).
+You can access a live demo of the application here -> [VintageWonders](https://vintagewonders.vercel.app).
 
 ## Backend API
 
