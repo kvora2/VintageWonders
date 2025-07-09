@@ -9,7 +9,15 @@ import { addToFavourites, removeFromFavourites } from "@/lib/userData";
 export default function ArtworkCardDetail(prop) {
     const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
     const [showAdded, setShowAdded] = useState(false);
-    const { data, error } = useSWR(prop.objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${prop.objectID}` : null)
+    const { data, error } = useSWR(
+        prop.objectID ? `/api/artworks/${prop.objectID}` : null
+    );
+
+    useEffect(() => {
+        if (favouritesList) {
+            setShowAdded(favouritesList.includes(prop.objectID));
+        }
+    }, [favouritesList, prop.objectID]);
 
     if (error) {
         return <Error statusCode={404} />
@@ -30,13 +38,9 @@ export default function ArtworkCardDetail(prop) {
         }
     }
 
-    useEffect(() => {
-        setShowAdded(favouritesList?.includes(prop.objectID))
-    }, [favouritesList])
-
     return (
         <>
-            <Card>
+            <Card className="border-2 border-red-500">
                 {data.primaryImage && <Card.Img variant="top" src={data.primaryImage} />}
                 <Card.Body>
                     <Card.Title>{data.title ? data.title : "N/A"}</Card.Title>

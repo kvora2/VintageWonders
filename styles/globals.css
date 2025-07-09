@@ -1,3 +1,101 @@
 .wiki {
     color:darkcyan;
 }
+
+/* Responsive Artwork Card Wrapper Styles */
+.artwork-card-wrapper {
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 1rem;
+}
+
+/* Small screens (576px and up) */
+@media (min-width: 576px) {
+    .artwork-card-wrapper {
+        padding: 14px;
+        margin: 1.25rem;
+    }
+}
+
+/* Medium screens (768px and up) */
+@media (min-width: 768px) {
+    .artwork-card-wrapper {
+        padding: 16px;
+        border-radius: 12px;
+        margin: 1.5rem;
+    }
+}
+
+/* Large screens (992px and up) */
+@media (min-width: 992px) {
+    .artwork-card-wrapper {
+        padding: 18px;
+        border-radius: 14px;
+        margin: 1.75rem;
+    }
+}
+
+/* Extra large screens (1200px and up) */
+@media (min-width: 1200px) {
+    .artwork-card-wrapper {
+        padding: 20px;
+        border-radius: 16px;
+        margin: 2rem;
+    }
+}
+
+/* Enhanced hover effects with responsive scaling */
+.artwork-card-wrapper:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+    .artwork-card-wrapper:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    }
+}
+
+@media (min-width: 1200px) {
+    .artwork-card-wrapper:hover {
+        transform: translateY(-8px) scale(1.04);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Responsive card content spacing */
+.artwork-card-wrapper .card {
+    border: none;
+    border-radius: inherit;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Ensure consistent aspect ratios across screen sizes */
+@media (max-width: 575px) {
+    .artwork-card-wrapper {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .artwork-card-wrapper {
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .artwork-card-wrapper {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .artwork-card-wrapper {
+        margin-bottom: 1.75rem;
+    }
+}
